@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chandan Gupta · National Placement & Workforce Strategist</title>
+  <!-- SEO meta -->
+  <meta name="description" content="Executive portfolio of Chandan Kumar Gupta – National Placement & Operations Strategist driving 2000+ placements, 50+ employer partners, pan-India workforce deployment.">
+  <meta name="author" content="Chandan Kumar Gupta">
+  <!-- Google Fonts + Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0b0c10;
+      color: #e5e9f0;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    /* Print styles – ensure PDF is readable */
+    @media print {
+      body {
+        background-color: #fff;
+        color: #000;
+      }
+      .glass-card, .exp-item, .footprint-card, .chart-card, .personal-details, .exec-summary, .edu-item {
+        background: #fff !important;
+        backdrop-filter: none !important;
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        color: #000 !important;
+      }
+      .metric-number, .stat-large, .profile-title h1 {
+        -webkit-text-fill-color: #000 !important;
+        background: none !important;
+        color: #000 !important;
+      }
+      .contact-bar i, .resp-list li:before, .fas {
+        color: #000 !important;
+      }
+      .sticky-nav, .pdf-btn {
+        display: none !important;
+      }
+      canvas {
+        filter: invert(1);
+      }
+      a {
+        color: #000 !important;
+        text-decoration: none;
+      }
+    }
+
+    .glass-card {
+      background: rgba(20, 25, 35, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(100, 210, 255, 0.15);
+      border-radius: 28px;
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(0, 255, 200, 0.05) inset;
+      transition: transform 0.2s ease, border-color 0.2s;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(0, 200, 255, 0.3);
+    }
+
+    .sticky-nav {
+      position: sticky;
+      top: 1rem;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      margin: 0 1rem;
+    }
+
+    .nav-container {
+      background: rgba(10, 15, 25, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 60px;
+      padding: 0.75rem 1.8rem;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      box-shadow: 0 15px 30px -10px #00000080;
+      display: inline-flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-container a {
+      color: #c0d0e0;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      transition: 0.2s;
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-container a:hover {
+      color: #80f0ff;
+      border-bottom-color: #40e0ff;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 2rem 1rem;
+    }
+
+    section {
+      margin-bottom: 5rem;
+      scroll-margin-top: 5rem;
+    }
+
+    /* Perfectly centered profile section */
+    .profile-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin: 2rem 0 3rem;
+    }
+
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2b3f5c, #151f2c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      font-weight: 500;
+      color: #b0f0ff;
+      box-shadow: 0 0 0 4px rgba(0, 255, 200, 0.3), 0 0 30px #00ccff55;
+      border: 2px solid rgba(255,255,255,0.15);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-title h1 {
+      font-size: 3.2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #ffffff, #b0f0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+    }
+
+    .subhead {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #b0d4f0;
+      margin: 0.5rem 0 0.25rem;
+    }
+
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #c0d8f0;
+      justify-content: center;
+    }
+
+    .contact-bar i {
+      width: 1.5rem;
+      color: #40ffff;
+    }
+
+    .pdf-btn {
+      background: rgba(0, 200, 255, 0.1);
+      border: 1px solid #40e0ff;
+      border-radius: 40px;
+      padding: 0.7rem 2rem;
+      font-weight: 600;
+      color: #e0f5ff;
+      cursor: pointer;
+      transition: all 0.2s;
+      backdrop-filter: blur(6px);
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1.2rem;
+    }
+
+    .pdf-btn:hover {
+      background: #40e0ff20;
+      border-color: #a0f0ff;
+      box-shadow: 0 0 20px #00b8ff;
+    }
+
+    .exec-summary {
+      padding: 2.5rem;
+      font-size: 1.15rem;
+      border-left: 6px solid #00e0ff;
+      background: rgba(20, 30, 45, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 32px;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.8rem;
+      margin: 3rem 0;
+    }
+
+    .metric-item {
+      text-align: center;
+      padding: 2rem 1rem;
+      border-radius: 28px;
+    }
+
+    .metric-number {
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1;
+      background: linear-gradient(145deg, #ffffff, #a0ecff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .metric-label {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #90b8d0;
+    }
+
+    .footprint-card {
+      padding: 2.5rem;
+      border-radius: 32px;
+      background: rgba(15, 25, 38, 0.7);
+      backdrop-filter: blur(5px);
+    }
+
+    .footprint-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .footprint-col p {
+      margin: 0.75rem 0;
+      font-size: 1.1rem;
+    }
+
+    .footprint-col i {
+      color: #30e0ff;
+      width: 1.8rem;
+    }
+
+    .sector-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+      justify-content: center;
+    }
+    .sector-badge {
+      background: rgba(0, 200, 255, 0.1);
+      border: 1px solid #20c0ff;
+      border-radius: 30px;
+      padding: 0.4rem 1.2rem;
+      font-size: 0.9rem;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    .charts-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .chart-card {
+      flex: 1 1 200px;
+      padding: 1.5rem 1rem 1rem;
+      border-radius: 30px;
+      background: rgba(12, 20, 30, 0.6);
+      backdrop-filter: blur(4px);
+      min-width: 210px;
+      text-align: center;
+    }
+
+    .chart-card canvas {
+      max-height: 150px;
+      width: 100% !important;
+    }
+
+    .stat-large {
+      font-size: 3rem;
+      font-weight: 600;
+      background: linear-gradient(145deg, #ffffff, #a0ecff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+    }
+
+    .exp-item {
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: 32px;
+    }
+
+    .exp-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1rem;
+    }
+
+    .exp-role {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #f0fcff;
+    }
+
+    .exp-company {
+      font-size: 1.3rem;
+      color: #80e0ff;
+    }
+
+    .exp-date {
+      font-size: 1rem;
+      background: #1e3347;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      color: #b0f0ff;
+    }
+
+    .resp-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+      gap: 0.5rem 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .resp-list li:before {
+      content: "▹";
+      color: #40ffff;
+      margin-right: 0.6rem;
+    }
+
+    .partners-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin: 2rem 0 1rem;
+    }
+
+    .partner-badge {
+      background: rgba(0, 200, 255, 0.1);
+      border: 1px solid #20c0ff;
+      border-radius: 40px;
+      padding: 0.5rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 400;
+      backdrop-filter: blur(2px);
+      transition: 0.1s;
+    }
+
+    .partner-badge:hover {
+      background: #2080ff30;
+      border-color: #60e0ff;
+    }
+
+    .achievement-board {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      gap: 1.5rem;
+    }
+
+    .achieve-item {
+      padding: 1.5rem;
+      border-radius: 24px;
+      background: rgba(25, 35, 50, 0.5);
+      backdrop-filter: blur(4px);
+      border-left: 4px solid #20d0ff;
+    }
+
+    /* Education section */
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+      margin-top: 1.5rem;
+    }
+    .edu-item {
+      padding: 1.8rem;
+      border-radius: 28px;
+      background: rgba(15, 25, 38, 0.6);
+      backdrop-filter: blur(4px);
+      border-left: 4px solid #40ffff;
+      transition: 0.2s;
+    }
+    .edu-item:hover {
+      border-color: #80f0ff;
+      background: rgba(25, 35, 50, 0.7);
+    }
+    .edu-degree {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #f0fcff;
+      margin-bottom: 0.3rem;
+    }
+    .edu-institution {
+      font-size: 1.1rem;
+      color: #80e0ff;
+      margin-bottom: 0.2rem;
+    }
+    .edu-date {
+      font-size: 0.95rem;
+      color: #b0d0f0;
+      background: #1e3347;
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      margin-top: 0.5rem;
+    }
+
+    .skill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .skill-badge {
+      background: rgba(0, 255, 255, 0.08);
+      border: 0.5px solid #20c0ff;
+      border-radius: 40px;
+      padding: 0.6rem 1.8rem;
+      font-weight: 400;
+      font-size: 1rem;
+      backdrop-filter: blur(3px);
+    }
+
+    .skill-badge:hover {
+      background: #20a0ff20;
+      border-color: #80f0ff;
+    }
+
+    .personal-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      background: rgba(0, 20, 30, 0.5);
+      border-radius: 30px;
+      padding: 1.8rem;
+      margin-top: 2rem;
+    }
+
+    footer {
+      border-top: 1px solid #203040;
+      padding: 2rem 0;
+      text-align: center;
+      color: #708090;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    @media (max-width: 700px) {
+      .profile-title h1 { font-size: 2.4rem; }
+      .subhead { font-size: 1.2rem; }
+      .nav-container { gap: 1.2rem; }
+      .container { padding: 1rem; }
+    }
+
+    .counter-value { display: inline-block; }
+  </style>
+</head>
+<body>
+  <div class="sticky-nav">
+    <div class="nav-container">
+      <a href="#home">Home</a>
+      <a href="#experience">Experience</a>
+      <a href="#metrics">Impact</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#education">Education</a>
+      <a href="#employers">Employers</a>
+      <a href="#competencies">Competencies</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+
+  <main class="container" id="home">
+    <!-- profile section - perfectly centered, CG circle restored -->
+    <div class="profile-row">
+      <div class="profile-image">CG</div>
+      <div class="profile-title">
+        <h1>Chandan Kumar Gupta</h1>
+        <div class="subhead">National Placement & Operations Strategist</div>
+        <div class="subhead" style="font-size:1.2rem; color:#b0e0ff;">Workforce Deployment & Employer Engagement Leader</div>
+        <div class="contact-bar">
+          <span><i class="fas fa-map-pin"></i> Ramgarh, Jharkhand</span>
+          <span><i class="fas fa-phone-alt"></i> +91 7991125961</span>
+          <span><i class="fas fa-envelope"></i> chandan.gupta79911@gmail.com</span>
+        </div>
+        <!-- PDF button with print styles now fixed for readability -->
+        <button class="pdf-btn" id="downloadPDFBtn"><i class="fas fa-file-pdf"></i> Download PDF</button>
+      </div>
+    </div>
+
+    <!-- executive summary -->
+    <section>
+      <div class="exec-summary glass-card">
+        <p style="font-size:1.4rem; font-weight:500; margin-bottom:1rem;">⚡ Strategic placement leader with <strong>8+ years</strong> driving workforce transformation across India.</p>
+        <p> Orchestrated multi-district skill development & placement operations across <strong>11+ district centers</strong>; successfully placed <strong>2000+ candidates</strong> pan-India. Built sustainable employer partnerships in healthcare, IT, retail, logistics, manufacturing, apparel & services. Expert in government compliance (JSDM), MIS analytics, and bulk hiring coordination. Trusted by 50+ employers including Quess, Adecco, Compass Group, and leading apparel exporters. </p>
+      </div>
+    </section>
+
+    <!-- animated metrics -->
+    <section id="metrics">
+      <div class="metric-grid">
+        <div class="metric-item glass-card"> <span class="metric-number counter" data-target="8">0</span><span class="metric-number">+</span> <div class="metric-label">Years experience</div> </div>
+        <div class="metric-item glass-card"> <span class="metric-number counter" data-target="11">0</span><span class="metric-number">+</span> <div class="metric-label">Districts managed</div> </div>
+        <div class="metric-item glass-card"> <span class="metric-number counter" data-target="2000">0</span><span class="metric-number">+</span> <div class="metric-label">Candidates placed across India</div> </div>
+        <div class="metric-item glass-card"> <span class="metric-number counter" data-target="50">0</span><span class="metric-number">+</span> <div class="metric-label">Employer partners</div> </div>
+        <div class="metric-item glass-card"> <span class="metric-number counter" data-target="25">0</span><span class="metric-number">+</span> <div class="metric-label">state-level drives</div> </div>
+      </div>
+    </section>
+
+    <!-- placement footprint + charts -->
+    <section>
+      <div class="footprint-card glass-card" style="margin-bottom:2rem;">
+        <h2 style="font-size:2rem; margin-bottom:1rem; font-weight:500; text-align:center;"><i class="fas fa-map-marked-alt" style="color:#40ffff;"></i> Placement footprint</h2>
+        <div class="footprint-grid">
+          <div class="footprint-col">
+            <p><i class="fas fa-check-circle"></i> <strong>States with active placements:</strong></p>
+            <p><i class="fas fa-arrow-right"></i> Jharkhand</p>
+            <p><i class="fas fa-arrow-right"></i> Maharashtra</p>
+            <p><i class="fas fa-arrow-right"></i> Tamil Nadu</p>
+            <p><i class="fas fa-arrow-right"></i> Karnataka</p>
+            <p><i class="fas fa-arrow-right"></i> Delhi NCR</p>
+            <p><i class="fas fa-arrow-right"></i> Telangana</p>
+            <p><i class="fas fa-arrow-right"></i> Gujarat</p>
+          </div>
+          <div class="footprint-col">
+            <p><i class="fas fa-building"></i> <strong>Industrial hubs:</strong></p>
+            <p><i class="fas fa-arrow-right"></i> Mumbai</p>
+            <p><i class="fas fa-arrow-right"></i> Bengaluru</p>
+            <p><i class="fas fa-arrow-right"></i> Chennai</p>
+            <p><i class="fas fa-arrow-right"></i> Coimbatore</p>
+            <p><i class="fas fa-arrow-right"></i> Gurugram</p>
+            <p><i class="fas fa-arrow-right"></i> Pune</p>
+          </div>
+          <div class="footprint-col">
+            <p><i class="fas fa-chart-pie"></i> <strong>2000+ placements across 7 sectors</strong></p>
+            <div class="sector-badges">
+              <span class="sector-badge">Healthcare</span>
+              <span class="sector-badge">IT</span>
+              <span class="sector-badge">Retail</span>
+              <span class="sector-badge">Manufacturing</span>
+              <span class="sector-badge">Logistics</span>
+              <span class="sector-badge">Apparel</span>
+              <span class="sector-badge">Services</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- charts -->
+      <div class="charts-row">
+        <div class="chart-card glass-card">
+          <canvas id="sectorChart" style="width:100%; height:130px;"></canvas>
+          <p style="text-align:center; margin-top:0.5rem; font-weight:400;">Sector distribution</p>
+          <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:0.5rem; margin-top:0.5rem; font-size:0.7rem; color:#b0e0ff;">
+            <span><span style="display:inline-block; width:10px; height:10px; background:#40bfff; border-radius:2px;"></span> Healthcare</span>
+            <span><span style="background:#8060ff; width:10px; height:10px; display:inline-block;"></span> IT</span>
+            <span><span style="background:#40dfb0;"></span> Retail</span>
+            <span><span style="background:#f0c040;"></span> Mfg</span>
+            <span><span style="background:#ff8060;"></span> Logistics</span>
+            <span><span style="background:#c060f0;"></span> Apparel</span>
+            <span><span style="background:#70d0ff;"></span> Services</span>
+          </div>
+        </div>
+        <div class="chart-card glass-card" style="display:flex; flex-direction:column; justify-content:center;">
+          <div class="stat-large">86%</div>
+          <p style="margin-top:0.2rem;">Placement success rate</p>
+          <p style="font-size:0.8rem; color:#b0d0f0;">(trained to placed)</p>
+        </div>
+        <div class="chart-card glass-card">
+          <canvas id="growthChart" style="width:100%; height:130px;"></canvas>
+          <p style="text-align:center; margin-top:0.5rem;">Yearly placements</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional Experience (UPDATED with new IT Trainer roles) -->
+    <section id="experience">
+      <h2 style="font-size:2.5rem; margin-bottom:2rem; font-weight:500;">📋 Executive career path</h2>
+
+      <!-- Venture Skill: Placement & Operations Coordinator -->
+      <div class="exp-item glass-card">
+        <div class="exp-header">
+          <span class="exp-role">Placement & Operations Coordinator</span>
+          <span class="exp-date">Apr 2024 – Present</span>
+        </div>
+        <div class="exp-company">Venture Skill India Pvt. Ltd. | Jharkhand</div>
+        <ul class="resp-list">
+          <li>Leading placement operations across 7–8 training centers under government skill development initiatives.</li>
+          <li>Coordinating with employers at district and state levels for bulk hiring and placement drives.</li>
+          <li>Managing end-to-end placement lifecycle: mobilization → training → assessment → interview → joining → tracking.</li>
+          <li>Developing employer networks for GDA, DDEO, and SMO job roles.</li>
+          <li>Organizing centralized and on-site placement drives across multiple districts.</li>
+          <li>Monitoring placement targets and ensuring achievement as per project guidelines.</li>
+          <li>Maintaining centralized placement MIS, alumni tracking, and employment verification.</li>
+          <li>Conducting candidate counseling and job-readiness sessions.</li>
+          <li>Ensuring compliance with JSDM quality and documentation standards.</li>
+          <li>Supporting audits, inspections, and project reporting.</li>
+          <li>Improving placement tracking systems and employer engagement processes.</li>
+        </ul>
+      </div>
+
+      <!-- Venture Skill: Centre Manager -->
+      <div class="exp-item glass-card">
+        <div class="exp-header">
+          <span class="exp-role">Centre Manager</span>
+          <span class="exp-date">Apr 2023 – Apr 2024</span>
+        </div>
+        <div class="exp-company">Venture Skill India Pvt. Ltd. | Jharkhand</div>
+        <ul class="resp-list">
+          <li>Managed complete center operations including training, mobilization, and placement.</li>
+          <li>Supervised trainers, placement staff, and administrative teams.</li>
+          <li>Developed strategies to achieve monthly and quarterly placement targets.</li>
+          <li>Coordinated with regional teams and senior management for performance review.</li>
+          <li>Ensured quality standards as per government skill development norms.</li>
+          <li>Conducted regular inspections and center audits.</li>
+          <li>Managed budgets, deadlines, and resource allocation.</li>
+          <li>Led daily performance meetings and target review sessions.</li>
+        </ul>
+      </div>
+
+      <!-- IndiaCan Education (Centre Manager) -->
+      <div class="exp-item glass-card">
+        <div class="exp-header"><span class="exp-role">Centre Manager & Placement Coordinator</span> <span class="exp-date">July 2021 – Mar 2023</span></div>
+        <div class="exp-company">IndiaCan Education Pvt. Ltd. · Deoghar / Jharkhand</div>
+        <ul class="resp-list">
+          <li>Led placement across 11 district centers; supervised district teams</li>
+          <li>Centralized employer tie‑ups, large‑scale hiring drives</li>
+          <li>Performance dashboards, KPI monitoring, improved joining %</li>
+          <li>Multi-location coordination, high-volume placement achievement</li>
+          <li>Delivered IT/digital literacy training & interview readiness</li>
+        </ul>
+      </div>
+
+      <!-- NEW: IT Trainer (IndiaCan Education) replacing old 2018-2020 entry -->
+      <div class="exp-item glass-card">
+        <div class="exp-header">
+          <span class="exp-role">IT Trainer</span>
+          <span class="exp-date">Apr 2018 – Mar 2020</span>
+        </div>
+        <div class="exp-company">IndiaCan Education Pvt. Ltd. · Jharkhand</div>
+        <ul class="resp-list">
+          <li>Delivered industry-aligned IT training programs including advanced MS Office, Tally ERP, and workplace digital skills.</li>
+          <li>Conducted soft skills and interview-readiness sessions to enhance candidate employability.</li>
+          <li>Maintained training MIS, assessment records, and compliance documentation under skill development projects.</li>
+          <li>Collaborated with placement teams to align candidate skillsets with employer requirements.</li>
+          <li>Improved job-readiness and interview conversion rates through structured mock sessions and skill-gap analysis.</li>
+        </ul>
+      </div>
+
+      <!-- NEW: IT Trainer (Maruti Educational World) replacing old Data Operator entry -->
+      <div class="exp-item glass-card">
+        <div class="exp-header">
+          <span class="exp-role">IT Trainer</span>
+          <span class="exp-date">Mar 2016 – Mar 2018</span>
+        </div>
+        <div class="exp-company">Maruti Educational World · Jharkhand</div>
+        <ul class="resp-list">
+          <li>Delivered foundational computer training covering MS Office, internet fundamentals, email communication, and digital documentation.</li>
+          <li>Conducted practical sessions to improve digital literacy among rural and semi-urban candidates.</li>
+          <li>Prepared structured lesson plans and monitored student performance through assessments and attendance tracking.</li>
+          <li>Provided basic employability guidance including resume formatting and interview orientation.</li>
+          <li>Supported center-level administrative reporting and candidate mobilization activities.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Achievement board -->
+    <section id="achievements">
+      <h2 style="font-size:2.2rem; margin-bottom:2rem;">🏆 Achievement board</h2>
+      <div class="achievement-board">
+        <div class="achieve-item"> <i class="fas fa-users" style="color:#40ffff"></i> 2000+ candidates placed across India, 50+ active employer network</div>
+        <div class="achieve-item"> <i class="fas fa-chart-pie"></i> Built sustainable employer partnerships in 7 sectors</div>
+        <div class="achieve-item"> <i class="fas fa-dashboard"></i> Designed centralized placement tracking system (MIS)</div>
+        <div class="achieve-item"> <i class="fas fa-building"></i> Led multi-district operations under govt initiatives (JSDM)</div>
+        <div class="achieve-item"> <i class="fas fa-line-chart"></i> Improved joining ratio & retention by 22% YoY</div>
+        <div class="achieve-item"> <i class="fas fa-bolt"></i> Managed 20+ bulk hiring drives (200+ candidates per drive)</div>
+      </div>
+    </section>
+
+    <!-- New Education Background section -->
+    <section id="education">
+      <h2 style="font-size:2.2rem; margin-bottom:1rem;">🎓 Education Background</h2>
+      <div class="education-grid">
+        <div class="edu-item">
+          <div class="edu-degree">PGDRD</div>
+          <div class="edu-institution">Indira Gandhi National Open University, Hazaribagh</div>
+          <div class="edu-date">Completed 2021</div>
+          <div style="margin-top:0.5rem; font-size:0.95rem; color:#b0e0ff;">Postgraduate Diploma in Rural Development</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree">BCA</div>
+          <div class="edu-institution">Vinoba Bhave University, Hazaribagh</div>
+          <div class="edu-date">Completed 2015</div>
+          <div style="margin-top:0.5rem; font-size:0.95rem; color:#b0e0ff;">Bachelor in Computer Application</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree">Intermediate (Science)</div>
+          <div class="edu-institution">St. Columba's College, Hazaribagh</div>
+          <div class="edu-date">Completed 2011</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree">Matriculation</div>
+          <div class="edu-institution">Dr. RML High School, West Bokaro Ghatotand</div>
+          <div class="edu-date">Completed 2009</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Separate section: Hiring Companies & Employer Partners -->
+    <section id="employers">
+      <h2 style="font-size:2.2rem; margin-bottom:1.5rem;">🤝 Hiring Companies & Employer Partners</h2>
+      <div class="glass-card" style="padding: 2rem;">
+        <p style="margin-bottom:1.5rem; font-size:1.2rem;">Trusted by leading employers across sectors – active partnerships with:</p>
+        <div class="partners-grid">
+          <span class="partner-badge">Zee India Logistics</span>
+          <span class="partner-badge">LMS Corporate Services</span>
+          <span class="partner-badge">SLV Solution Pvt Ltd</span>
+          <span class="partner-badge">Gogaro Pvt Ltd</span>
+          <span class="partner-badge">Quess Corp Limited</span>
+          <span class="partner-badge">SPNN Business Services</span>
+          <span class="partner-badge">Adecco India</span>
+          <span class="partner-badge">Compass Group India</span>
+          <span class="partner-badge">Sukoon Care</span>
+          <span class="partner-badge">20-50 Healthcare</span>
+          <span class="partner-badge">SP Apparels</span>
+          <span class="partner-badge">AVSAR HR Services</span>
+          <span class="partner-badge">Eastman Exports Global Clothing</span>
+          <span class="partner-badge">Tata Steel Ltd (project)</span>
+          <span class="partner-badge">Maruti Educational World</span>
+        </div>
+        <p style="margin-top:1.5rem; color:#b0e0ff;"><i class="fas fa-handshake"></i> 50+ employer relationships across healthcare, IT, retail, logistics, manufacturing, apparel & services.</p>
+      </div>
+    </section>
+
+    <!-- Core competencies -->
+    <section id="competencies">
+      <h2 style="font-size:2.2rem; margin-bottom:1rem;">🧠 Core competencies</h2>
+      <div class="skill-grid">
+        <span class="skill-badge">Employer Acquisition</span><span class="skill-badge">Bulk Hiring Strategy</span>
+        <span class="skill-badge">Placement Lifecycle</span><span class="skill-badge">MIS & Analytics</span>
+        <span class="skill-badge">Team Leadership</span><span class="skill-badge">Govt Compliance (JSDM)</span>
+        <span class="skill-badge">Performance Management</span><span class="skill-badge">District Cluster Management</span>
+        <span class="skill-badge">Candidate Counseling</span><span class="skill-badge">Audit Coordination</span>
+        <span class="skill-badge">Financial Modeling</span><span class="skill-badge">Risk Management</span>
+        <span class="skill-badge">MS Office / Tally</span><span class="skill-badge">Communication & Leadership</span>
+      </div>
+    </section>
+
+    <!-- Personal details + contact -->
+    <section id="contact">
+      <div class="personal-details glass-card">
+        <div><i class="fas fa-user"></i> <strong>Father’s name:</strong> Shri Ramawatr Prasad</div>
+        <div><i class="fas fa-calendar-alt"></i> <strong>DOB:</strong> 10 Oct 1994</div>
+        <div><i class="fas fa-flag"></i> <strong>Nationality:</strong> Indian</div>
+        <div><i class="fas fa-heart"></i> <strong>Marital status:</strong> Unmarried</div>
+        <div><i class="fas fa-certificate"></i> <strong>PGDDR (IGNOU) 2021 · BCA 2015</strong></div>
+      </div>
+      <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: space-between; margin: 2rem 0;">
+        <span><i class="fas fa-phone-alt"></i> +91 7991125961</span>
+        <span><i class="fas fa-envelope"></i> chandan.gupta79911@gmail.com</span>
+        <span><i class="fas fa-map-marker-alt"></i> Near Ganesh Mandap, Ramgarh, Jharkhand 825314</span>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Chandan Kumar Gupta – National Placement & Workforce Deployment Leader. All rights reserved.</p>
+    </footer>
+  </main>
+
+  <!-- scripts -->
+  <script>
+    (function() {
+      // Counters animation
+      const counters = document.querySelectorAll('.counter');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = +el.getAttribute('data-target');
+            let current = 0;
+            const increment = target / 30;
+            const update = () => {
+              current += increment;
+              if (current < target) {
+                el.innerText = Math.ceil(current);
+                requestAnimationFrame(update);
+              } else {
+                el.innerText = target;
+              }
+            };
+            update();
+            observer.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+      counters.forEach(c => observer.observe(c));
+
+      // Sector chart
+      new Chart(document.getElementById('sectorChart'), {
+        type: 'doughnut',
+        data: {
+          labels: ['Healthcare', 'IT', 'Retail', 'Manufacturing', 'Logistics', 'Apparel', 'Services'],
+          datasets: [{
+            data: [18, 22, 15, 20, 10, 8, 7],
+            backgroundColor: ['#40bfff', '#8060ff', '#40dfb0', '#f0c040', '#ff8060', '#c060f0', '#70d0ff'],
+            borderWidth: 0
+          }]
+        },
+        options: { plugins: { legend: { display: false } }, responsive: true }
+      });
+
+      // Yearly growth chart to 2025
+      new Chart(document.getElementById('growthChart'), {
+        type: 'line',
+        data: {
+          labels: ['2021', '2022', '2023', '2024', '2025'],
+          datasets: [{
+            data: [320, 510, 680, 720, 780],
+            borderColor: '#ffd966',
+            backgroundColor: '#ffd96620',
+            tension: 0.2,
+            fill: true,
+            pointBackgroundColor: '#ffd966'
+          }]
+        },
+        options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: '#203040' } } } }
+      });
+
+      // PDF download (print) with improved styles
+      document.getElementById('downloadPDFBtn').addEventListener('click', function() {
+        window.print();
+      });
+    })();
+  </script>
+</body>
+</html>
