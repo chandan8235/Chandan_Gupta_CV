@@ -163,6 +163,7 @@
       font-weight: 600;
       letter-spacing: -0.02em;
       background: linear-gradient(to right, #ffffff, #b0f0ff);
+      background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       line-height: 1.2;
@@ -240,6 +241,7 @@
       font-weight: 700;
       line-height: 1;
       background: linear-gradient(145deg, #ffffff, #a0ecff);
+      background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -318,6 +320,7 @@
       font-size: 3rem;
       font-weight: 600;
       background: linear-gradient(145deg, #ffffff, #a0ecff);
+      background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       line-height: 1.2;
@@ -915,7 +918,7 @@
             </div>
             <div class="flip-card-back">
               <i class="fas fa-chart-line" style="color:#40ffff;"></i>
-              <p>Real-time dashboard implemented across 11+ districts across multiple states.</p>
+              <p>Real‑time dashboard adopted across 11 districts.</p>
             </div>
           </div>
         </div>
@@ -1108,9 +1111,10 @@
       });
 
       // PDF download (print) with improved styles
-      document.getElementById('downloadPDFBtn').addEventListener('click', function() {
-        window.print();
-      });
+      document.getElementById("downloadPDFBtn").addEventListener("click", function () {
+    window.open("https://drive.google.com/uc?export=download&id=1pQSAIpo-UMKsR5fORD14EinMfujrYCFp", "_blank");
+});
+     
 
       // ========== ADDED JAVASCRIPT ENHANCEMENTS ==========
       // Fade‑in sections on scroll
@@ -1169,4 +1173,3 @@
   </script>
 </body>
 </html>
-
